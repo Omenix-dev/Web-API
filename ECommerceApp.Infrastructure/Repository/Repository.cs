@@ -1,15 +1,16 @@
 ﻿using ECommerceApp.Core.Interface;
 using ECommerceApp.Domain.Model;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace ECommerceApp.Infrastructure.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly ECommerceDbContext context;
+        private readonly ECommerceDbContext _context;
         public Repository(ECommerceDbContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public Task DeleteAsync(int id)
@@ -22,13 +23,12 @@ namespace ECommerceApp.Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<IQueryable<T>> GetAllAsync()
+        public IQueryable<T> GetAllAsync()
         {
-            return (IQueryable<T>)await context.Set<T>().ToListAsync();
-            
+            return _context.Set<T>();
         }
 
-        public Task<T> GetAsync(System.Linq.Expressions.Expression<Func<T, bool>> expression, List<string> includes = null)
+        public Task<T> GetAsync(Expression<Func<T, bool>> expression, List<string> includes = null)
         {
             throw new NotImplementedException();
         }
