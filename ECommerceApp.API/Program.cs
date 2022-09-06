@@ -1,6 +1,7 @@
 using ECommerceApp.API;
+using ECommerceApp.Core.Interface;
 using ECommerceApp.Infrastructure;
-using ECommerceApp.Infrastructure.UnitOfWork;
+using ECommerceApp.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
