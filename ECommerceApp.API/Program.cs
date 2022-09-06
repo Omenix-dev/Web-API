@@ -1,5 +1,6 @@
 using ECommerceApp.API;
 using ECommerceApp.Infrastructure;
+using ECommerceApp.Infrastructure.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ECommerceDbContext>(options => options.UseSqlServer(configuration.GetConnectionString
     ("DefaultConnection")));
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
