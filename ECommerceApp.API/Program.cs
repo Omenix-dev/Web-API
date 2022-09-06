@@ -1,5 +1,7 @@
 using ECommerceApp.API;
+using ECommerceApp.Core.Interface;
 using ECommerceApp.Infrastructure;
+using ECommerceApp.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ECommerceDbContext>(options => options.UseSqlServer(configuration.GetConnectionString
     ("DefaultConnection")));
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 await ECommerceDbInitializer.Seed(app);
