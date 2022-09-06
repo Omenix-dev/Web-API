@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ECommerceDbContext>(options => options.UseSqlServe
     ("DefaultConnection")));
 
 var app = builder.Build();
+await ECommerceDbInitializer.Seed(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

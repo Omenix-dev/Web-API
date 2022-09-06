@@ -11,7 +11,7 @@ namespace ECommerceApp.Domain.Model
         public string Id { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTimeOffset CreatedAt { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTimeOffset UpdatedAt { get; set; }
     }
 }
