@@ -50,11 +50,5 @@ namespace ECommerceApp.Infrastructure.Repository
         {
             await _db.AddRangeAsync(entities);
         }
-
-        public void UpdateAsync(T entity)
-        {
-            _db.Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
-        }
     }
 }

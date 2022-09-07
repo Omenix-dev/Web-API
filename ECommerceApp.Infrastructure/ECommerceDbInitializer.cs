@@ -14,6 +14,9 @@ namespace ECommerceApp.Infrastructure
             var context = serviceScope.ServiceProvider.GetService<ECommerceDbContext>();
             string filePath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName, @"ECommerceApp.Infrastructure\Data\");
 
+            if (await context.Database.EnsureCreatedAsync())
+                return;
+
             if (!context.Categories.Any())
             {
                 var readText = await File.ReadAllTextAsync(filePath + "Categories.json");

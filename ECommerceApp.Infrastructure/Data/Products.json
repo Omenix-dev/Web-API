@@ -9,8 +9,6 @@
     "Quantity": 5,
     "Rating": 3,
     "CategoryId": "533a7391-bd03-4d5b-bff0-1704773fbfd0",
-    "CreatedAt": "2019-01-31T17:32:00-05:00",
-    "UpdatedAt": "2022-09-06T17:32:00-05:01",
     "ProductImages": [
       {
         "ImageUrl": "21daf712-b2ff-424b-9575-f460b4033246_bag1.jpg"
@@ -36,8 +34,6 @@
     "Quantity": 8,
     "Rating": 4,
     "CategoryId": "235a715d-9b66-4689-ae2b-cc7277dde29e",
-    "CreatedAt": "2019-01-31T17:32:00-05:00",
-    "UpdatedAt": "2022-09-06T17:32:00-05:01",
     "ProductImages": [
       {
         "ImageUrl": "12c8b447-7350-45fb-9024-e4c2c7cc4464_sneakers41.jpg"

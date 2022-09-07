@@ -3,11 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceApp.Domain.Model
 {
-    public class ProductImage
+    public class ProductImage : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
         public string ImageUrl { get; set; }
 
         [ForeignKey("Product")]
