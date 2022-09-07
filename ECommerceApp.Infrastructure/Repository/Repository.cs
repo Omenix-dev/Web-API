@@ -1,4 +1,5 @@
-﻿using ECommerceApp.Core.Interface;
+﻿using ECommerceApp.Core.Interface.IRepository;
+using ECommerceApp.Core.Interface;
 using ECommerceApp.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -8,19 +9,21 @@ namespace ECommerceApp.Infrastructure.Repository
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly ECommerceDbContext _context;
+        private readonly DbSet<T> _db;
         public Repository(ECommerceDbContext context)
         {
             _context = context;
+            _db = context.Set<T>();
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            _db.Remove(await _db.FindAsync(id));
         }
 
         public void DeleteRangeAsync(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            _db.RemoveRange(entities);
         }
 
         public IQueryable<T> GetAllAsync()
@@ -28,24 +31,33 @@ namespace ECommerceApp.Infrastructure.Repository
             return _context.Set<T>();
         }
 
-        public Task<T> GetAsync(Expression<Func<T, bool>> expression, List<string> includes = null)
+        public async Task<T> GetAsync(System.Linq.Expressions.Expression<Func<T, bool>> expression, List<string> includes = null)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = _db;
+            if(includes != null)
+            {
+                foreach(var property in includes)
+                {
+                    query = query.Include(property);
+                }
+            }
+            return await _db.AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
-        public Task InsertAsync(T entity)
+        public async Task InsertAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _db.AddAsync(entity);
         }
 
-        public Task InsertRangeAsync(IEnumerable<T> entities)
+        public async Task InsertRangeAsync(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            await _db.AddRangeAsync(entities);
         }
 
         public void UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            _db.Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }
