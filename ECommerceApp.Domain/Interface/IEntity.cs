@@ -1,4 +1,7 @@
-﻿namespace ECommerceApp.Domain.Interface
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ECommerceApp.Domain.Interface
 {
     public interface IEntity
     {
