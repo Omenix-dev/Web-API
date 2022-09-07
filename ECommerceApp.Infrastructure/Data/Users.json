@@ -1,0 +1,15 @@
+[
+  {
+    "FirstName": "Function",
+    "LastName": "Promise",
+    "Email": "function@gmail.com",
+    "Password": "func123456",
+    "PhoneNumber": "08066109397",
+    "Address": "N0 2 Ajason way, Nero bus-stop, Sangotedo, Lagos",
+    "IsAvailable": true,
+    "DiscountPrice": 299.43,
+    "IsDiscountProduct": true,
+    "Size": 54,
+    "Discount": "24% Off"
+  }
+]

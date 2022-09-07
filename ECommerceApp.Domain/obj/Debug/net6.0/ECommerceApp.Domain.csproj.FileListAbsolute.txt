@@ -1,0 +1,12 @@
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\bin\Debug\net6.0\ECommerceApp.Domain.deps.json
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\bin\Debug\net6.0\ECommerceApp.Domain.dll
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\bin\Debug\net6.0\ECommerceApp.Domain.pdb
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\obj\Debug\net6.0\ECommerceApp.Domain.csproj.AssemblyReference.cache
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\obj\Debug\net6.0\ECommerceApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\obj\Debug\net6.0\ECommerceApp.Domain.AssemblyInfoInputs.cache
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\obj\Debug\net6.0\ECommerceApp.Domain.AssemblyInfo.cs
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\obj\Debug\net6.0\ECommerceApp.Domain.csproj.CoreCompileInputs.cache
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\obj\Debug\net6.0\ECommerceApp.Domain.dll
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\obj\Debug\net6.0\refint\ECommerceApp.Domain.dll
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\obj\Debug\net6.0\ECommerceApp.Domain.pdb
+C:\Users\hp\Source\Repos\week-9-task-pod-a\ECommerceApp.Domain\obj\Debug\net6.0\ref\ECommerceApp.Domain.dll

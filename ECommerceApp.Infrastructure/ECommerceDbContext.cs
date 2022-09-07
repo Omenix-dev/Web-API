@@ -8,7 +8,6 @@ namespace ECommerceApp.Infrastructure
         public ECommerceDbContext(DbContextOptions<ECommerceDbContext> options) : base(options)
         {
         }
-
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }

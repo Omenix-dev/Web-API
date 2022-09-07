@@ -15,7 +15,6 @@ namespace ECommerceApp.Domain.Model
         [StringLength(15)]
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
-
         public ICollection<Transaction> Transaction { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
     }
