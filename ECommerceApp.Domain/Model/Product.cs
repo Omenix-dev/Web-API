@@ -8,11 +8,10 @@ namespace ECommerceApp.Domain.Model
         public string Name { get; set; }
         public string Description { get; set; }
         [Column(TypeName = "decimal(18,2)")]
-        public decimal InitialPrice { get; set; }
+        public decimal Price { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Discount { get; set; }
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal CurrentPrice { get; set; }
+        public bool IsDiscountAvailable { get; set; }
         public int Quantity { get; set; }
         [Range(1,5)]
         public int Rating { get; set; }
