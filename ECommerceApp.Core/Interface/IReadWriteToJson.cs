@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerceApp.Core
+namespace ECommerceApp.Core.Interface
 {
     public interface IReadWriteToJson
     {

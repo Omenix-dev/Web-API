@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using ECommerceApp.Core.DTO;
-using System.Linq;
 
 namespace ECommerceApp.Core.Utilities
 {

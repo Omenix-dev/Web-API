@@ -16,7 +16,6 @@ namespace ECommerceApp.Domain.Model
         public int Quantity { get; set; }
         [Range(1,5)]
         public int Rating { get; set; }
-
        
         [ForeignKey("Category")]
         public string CategoryId { get; set; }

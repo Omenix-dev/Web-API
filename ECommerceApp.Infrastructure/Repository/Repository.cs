@@ -1,8 +1,5 @@
-﻿using ECommerceApp.Core.Interface.IRepository;
-using ECommerceApp.Core.Interface;
-using ECommerceApp.Domain.Model;
+﻿using ECommerceApp.Core.Interface;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace ECommerceApp.Infrastructure.Repository
 {

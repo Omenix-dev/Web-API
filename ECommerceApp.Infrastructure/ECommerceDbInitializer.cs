@@ -28,12 +28,12 @@ namespace ECommerceApp.Infrastructure
                 await context.Products.AddRangeAsync(products);
             }
 
-            if (!context.Roles.Any())
+            /*if (!context.Roles.Any())
             {
                 var readText = await File.ReadAllTextAsync(filePath + "Roles.json");
                 List<Role> roles = JsonConvert.DeserializeObject<List<Role>>(readText);
                 await context.Roles.AddRangeAsync(roles);
-            }
+            }*/
             await context.SaveChangesAsync();
         }
     }

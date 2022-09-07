@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ECommerceApp.Infrastructure.Migrations
 {
-    public partial class ÍnitialMig : Migration
+    public partial class aceMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
