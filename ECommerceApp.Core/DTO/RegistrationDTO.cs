@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ECommerceApp.Core.Utilities;
+using System.ComponentModel.DataAnnotations;
 
 namespace ECommerceApp.Core.DTO
 {
@@ -19,6 +20,7 @@ namespace ECommerceApp.Core.DTO
         [Required]
         [Compare("Password")]
         public string PasswordAgain { get; set; }
+        public byte[] PasswordSalt { get; set; } = SaltHashAlgorithm.GenerateSalt();
         [Required(ErrorMessage ="Enter Address")]
         public string Address { get; set; }
         [Required]
