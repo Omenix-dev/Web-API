@@ -8,7 +8,7 @@ namespace ECommerceApp.Domain.Enum
 {
     public enum OrderStatus
     {
-        Processing,
+        Processing=1,
         InTransit,
         OutForDelivery,
         Delivered,

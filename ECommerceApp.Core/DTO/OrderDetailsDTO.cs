@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Core.DTO
 {
-    class OrderDetailsDTO
+    public class OrderDetailsDTO
     {
         [Required]
         [DataType(DataType.Text)]

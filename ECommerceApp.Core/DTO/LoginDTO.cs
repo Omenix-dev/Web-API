@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Core.DTO
 {
-    class LoginDTO
+    public class LoginDTO
     {
         [Required]
         [EmailAddress(ErrorMessage ="Invalid Email")]

@@ -13,7 +13,7 @@ namespace ECommerceApp.Core.Interface
         Task<T> GetAsync(Expression<Func<T, bool>> expression, List<string> includes = null);
         Task InsertAsync(T entity);
         Task InsertRangeAsync(IEnumerable<T> entities);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(string id);
         void DeleteRangeAsync(IEnumerable<T> entities);
     }
 }

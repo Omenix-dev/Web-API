@@ -2,7 +2,7 @@
 
 namespace ECommerceApp.Core.DTO
 {
-    class RegistrationDTO
+    public class RegistrationDTO
     {
         [Required]
         [StringLength(50, ErrorMessage = "Do not enter more than 20 characters")]
@@ -24,7 +24,5 @@ namespace ECommerceApp.Core.DTO
         [Required]
         [StringLength(15, ErrorMessage ="Invalid PhoneNumber")]
         public string PhoneNumber { get; set; }
-
-        
     }
 }

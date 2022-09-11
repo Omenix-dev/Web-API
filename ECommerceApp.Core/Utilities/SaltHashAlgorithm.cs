@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-namespace Test
+namespace ECommerceApp.Core.Utilities
 {
     public class SaltHashAlgorithm
     {

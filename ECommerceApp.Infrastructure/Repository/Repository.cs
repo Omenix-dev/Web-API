@@ -13,7 +13,7 @@ namespace ECommerceApp.Infrastructure.Repository
             _db = context.Set<T>();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string id)
         {
             _db.Remove(await _db.FindAsync(id));
         }
