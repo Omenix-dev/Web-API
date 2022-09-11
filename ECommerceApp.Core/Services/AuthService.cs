@@ -39,8 +39,8 @@ namespace ECommerceApp.Core.Services
         }
         public async Task<User> LoginAsync(LoginDTO details)
         {
-            var userData = await _unitOfWork.UserRepository.GetAsync(user=>user.Email.Equals(details.Email.ToLower()));
-            if(userData == null)
+            var userData = await _unitOfWork.UserRepository.GetAsync(user => user.Email.Equals(details.Email.ToLower()));
+            if (userData == null)
                 return null;
             var isPassed = SaltHashAlgorithm.CompareHash(details.Password, userData.PasswordHash, userData.PasswordSalt);
             if (isPassed)

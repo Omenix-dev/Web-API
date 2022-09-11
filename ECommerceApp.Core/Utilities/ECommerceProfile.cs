@@ -17,7 +17,8 @@ namespace ECommerceApp.Core.Utilities
             CreateMap<OrderDetail, OrderDetailsDTO>().ReverseMap();
             CreateMap<Product, ProductDTO>().ReverseMap();
             CreateMap<User, RegistrationDTO>().ReverseMap()
-                .ForMember(dest => dest.Email,act=>act.MapFrom(src=>src.Email.ToLower()));
+                .ForMember(dest => dest.Email,act=>act.MapFrom(src=>src.Email.ToLower()))
+                .ForMember(dest=> dest.PasswordHash,act=>act.MapFrom(src=>SaltHashAlgorithm.GenerateHash(src.Password,src.PasswordSalt)));
         }
     }
 }

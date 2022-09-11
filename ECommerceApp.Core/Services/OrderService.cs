@@ -11,22 +11,22 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Core.Services
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public OrderService(IUnitOfWork unitOfWork,IMapper mapper)
+        public OrderService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
-        public bool AddOrderAsync(List<OrderDetailsDTO> orderDetails,string userId)
+        public bool AddOrderAsync(List<OrderDetailsDTO> orderDetails, string userId)
         {
             try
             {
                 List<OrderDetail> orderDetailsList = new List<OrderDetail>();
-                foreach(var orderDetail in orderDetails)
+                foreach (var orderDetail in orderDetails)
                 {
                     var orderDetailsModel = _mapper.Map<OrderDetail>(orderDetail);
                     orderDetailsList.Add(orderDetailsModel);
@@ -72,7 +72,7 @@ namespace ECommerceApp.Core.Services
         }
         public IEnumerable<Order> GetOrdersByUserIdAsync(string UserId)
         {
-            return _unitOfWork.OrderRepository.GetAllAsync().Where(order=>order.UserId.Equals(UserId)).ToList();
+            return _unitOfWork.OrderRepository.GetAllAsync().Where(order => order.UserId.Equals(UserId)).ToList();
         }
         public IQueryable<Order> GetAllSuccessfullOrderAsync(string UserId)
         {
