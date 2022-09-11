@@ -27,7 +27,7 @@ namespace ECommerceApp.Infrastructure.Repository
         public IProductRepository ProductRepository => _productRepository ??= new ProductRepository(_context);
         public ICategoryRepository CategoryRepository => _categoryRepository ??= new CategoryRepository(_context);
         public IOrderRepository OrderRepository => _orderRepository ??= new OrderRepository(_context);
-        public IOrderDetailsRepository OrderDetailsRepository => _orderDetailsRepository ??= new OrderDetailsRepository(_context);
+        public IOrderDetailsRepository   OrderDetailsRepository => _orderDetailsRepository ??= new OrderDetailsRepository(_context);
         public IProductImageRepository ProductImageRepository => _productImageRepository ??= new ProductImageRepository(_context);
         public IRoleRepository RoleRepository => _roleRepository ??= new RoleRepository(_context);
 
