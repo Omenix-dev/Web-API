@@ -38,5 +38,12 @@ namespace ECommerceApp.API.Controllers
                 return StatusCode(500, "Internal Server Error. Try Again Later Please");
             }
         }
+
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] RegistrationDTO dTO)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
