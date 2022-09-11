@@ -1,5 +1,6 @@
 using ECommerceApp.API;
 using ECommerceApp.Core.Interface;
+using ECommerceApp.Core.Services;
 using ECommerceApp.Core.Utilities;
 using ECommerceApp.Infrastructure;
 using ECommerceApp.Infrastructure.Repository;
@@ -18,6 +19,7 @@ builder.Services.AddDbContext<ECommerceDbContext>(options => options.UseSqlServe
     ("DefaultConnection")));
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddAutoMapper(typeof(ECommerceProfile));
 var app = builder.Build();
 await ECommerceDbInitializer.Seed(app);

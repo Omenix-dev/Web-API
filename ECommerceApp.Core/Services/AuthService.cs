@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Core.Services
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
