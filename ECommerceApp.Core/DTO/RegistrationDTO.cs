@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ECommerceApp.Core.Utilities;
+using System.ComponentModel.DataAnnotations;
 
 namespace ECommerceApp.Core.DTO
 {

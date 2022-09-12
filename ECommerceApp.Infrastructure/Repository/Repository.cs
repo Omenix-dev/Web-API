@@ -25,7 +25,7 @@ namespace ECommerceApp.Infrastructure.Repository
 
         public IQueryable<T> GetAllAsync()
         {
-            return _context.Set<T>();
+            return _db;
         }
 
         public async Task<T> GetAsync(System.Linq.Expressions.Expression<Func<T, bool>> expression, List<string> includes = null)
@@ -38,12 +38,20 @@ namespace ECommerceApp.Infrastructure.Repository
                     query = query.Include(property);
                 }
             }
+
             return await _db.AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
         public async Task InsertAsync(T entity)
         {
-            await _db.AddAsync(entity);
+            try
+            {
+                await _db.AddAsync(entity);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task InsertRangeAsync(IEnumerable<T> entities)

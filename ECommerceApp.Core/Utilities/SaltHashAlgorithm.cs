@@ -6,6 +6,7 @@ namespace ECommerceApp.Core.Utilities
     {
         private const int MINSALTSIZE = 12;
         private const int MAXSALTSIZE = 16;
+
         public static byte[] GenerateSalt()
         {
             var random = new Random();
