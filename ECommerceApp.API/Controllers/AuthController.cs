@@ -20,30 +20,26 @@ namespace ECommerceApp.API.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegistrationDTO dTO)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            try
-            {
-               if(!await _service.RegisterAsync(dTO))
-                {
-                    return BadRequest("User Registration Attempt Failed");
-                }
-                return Ok(await _service.RegisterAsync(dTO));
-            }
-            catch (Exception)
-            {
-
-                return StatusCode(500, "Internal Server Error. Try Again Later Please");
-            }
+                return StatusCode(200,await _service.RegisterAsync(dTO));
         }
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] RegistrationDTO dTO)
+        public async Task<IActionResult> Login([FromBody] LoginDTO dTO)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //HttpContext.User;
+                if(await _service.LoginAsync(dTO) == null)
+                {
+                    return BadRequest("Login failed");
+                }
+                return Accepted();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

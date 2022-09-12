@@ -7,20 +7,18 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Core.DTO
 {
-    class ResponseDTO
+    public class ResponseDTO<T>
     {
-        [Required]
-        [DataType(DataType.Text)]
-        public string StatusCode { get; set; }
-        [Required]
-        [DataType(DataType.Text)]
-        public string Status { get; set; }
-        [Required]
-        [DataType(DataType.Text)]
-        public string Data { get; set; }
-        [Required]
-        [DataType(DataType.Text)]
-        public string Error { get; set; }
-        
+        public int StatusCode { get; set; }
+        public bool Status { get; set; } = false;
+        public string Message { get; set; } 
+        public T Data { get; set; }
+        public List<ErrorItem> Error { get; set; }
+    }
+
+    public class ErrorItem
+    {
+        public string Description { get; set; }
+        public string InnerException { get; set; }
     }
 }

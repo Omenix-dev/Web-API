@@ -6,6 +6,6 @@ namespace ECommerceApp.Core.Interface
     public interface IAuthService
     {
         Task<User> LoginAsync(LoginDTO details);
-        Task<bool> RegisterAsync(RegistrationDTO userDetails);
+        Task<ResponseDTO<string>> RegisterAsync(RegistrationDTO userDetails);
     }
 }
