@@ -2,13 +2,14 @@
 using ECommerceApp.Core.DTO;
 using ECommerceApp.Core.Interface;
 using ECommerceApp.Core.Utilities;
+using ECommerceApp.Domain.Enum;
 using ECommerceApp.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net;
+using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerceApp.Core.Services
 {
@@ -16,10 +17,59 @@ namespace ECommerceApp.Core.Services
     {
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
-        public AuthService(IMapper mapper, IUnitOfWork unitOfWork)
+        private readonly IConfiguration _config;
+        private readonly IRoleService _service;
+        private User _user;
+
+        public AuthService(IMapper mapper, IUnitOfWork unitOfWork, IConfiguration config, IRoleService service)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
+            _config = config;
+            _service = service;
+        }
+        public async Task<string> CreateToken()
+        {
+            var signingCredentials = GetSigningCredentials();
+            var claims = await GetClaims();
+            var token = GenerateTokenOptions(signingCredentials, claims);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
+        {
+            var jwtConfig = _config.GetSection("Jwt");
+            var expiration = DateTime.Now.AddMinutes(Convert.ToDouble(jwtConfig.GetSection("lifetime").Value));
+            var token = new JwtSecurityToken(
+                issuer: jwtConfig.GetSection("Issuer").Value,
+                claims: claims,
+                expires: expiration,
+                signingCredentials: signingCredentials
+                );
+            return token;
+        }
+
+        private async Task<List<Claim>> GetClaims()
+        {
+            var claims = new List<Claim>
+            {
+                 new Claim(ClaimTypes.Name, _user.Email),
+                 new Claim(ClaimTypes.NameIdentifier, _user.Id.ToString()),
+            };
+            var roles = await _service.GetRolesAsync(_user);
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+            return claims;
+        }
+
+        private SigningCredentials GetSigningCredentials()
+        {
+            var key = Environment.GetEnvironmentVariable("LOCK");
+            var secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
 
         public async Task<ResponseDTO<string>> RegisterAsync(RegistrationDTO userDetails)
@@ -46,7 +96,10 @@ namespace ECommerceApp.Core.Services
                 var userModel = _mapper.Map<User>(userDetails);
                 userModel.PasswordSalt = SaltHashAlgorithm.GenerateSalt();
                 userModel.PasswordHash = SaltHashAlgorithm.GenerateHash(userDetails.Password, userModel.PasswordSalt);
-                await _unitOfWork.UserRepository.InsertAsync(userModel);
+                if(_unitOfWork.UserRepository.InsertAsync(userModel).IsCompletedSuccessfully)
+                {
+                    await _service.AddToRoleAsync(userModel, UserRoles.Customer.ToString());
+                }               
             }
             catch (Exception)
             {
@@ -63,16 +116,11 @@ namespace ECommerceApp.Core.Services
             return result;
         }
 
-        public async Task<User> LoginAsync(LoginDTO details)
+        public async Task<bool> LoginAsync(LoginDTO details)
         {
-            var userData = await _unitOfWork.UserRepository.GetAsync(user => user.Email.Equals(details.Email.ToLower()));
-            if (userData == null)
-                return null;
-            var isPassed = SaltHashAlgorithm.CompareHash(details.Password, userData.PasswordHash, userData.PasswordSalt);
-            if (isPassed)
-                return userData;
-            else
-                return null;
+            _user = await _unitOfWork.UserRepository.GetAsync(user => user.Email.Equals(details.Email.ToLower()));
+            return _user != null & SaltHashAlgorithm.CompareHash(details.Password, _user.PasswordHash, _user.PasswordSalt);
+
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ECommerceApp.Infrastructure.Migrations
 {
-    public partial class made : Migration
+    public partial class tolove : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

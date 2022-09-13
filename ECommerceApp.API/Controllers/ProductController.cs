@@ -2,6 +2,7 @@
 using ECommerceApp.Core.Interface;
 using ECommerceApp.Core.Utilities;
 using ECommerceApp.Domain.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
