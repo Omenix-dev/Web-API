@@ -24,9 +24,9 @@ namespace ECommerceApp.Core.Services
                 var exec = _unitOfWork.ProductRepository.GetAllAsync();
                 var response = Paginator.PaginationAsync<Product,ProductDTO>(exec,pageSize,pageNumber,_mapper);
                 responseDto.Data = response;
-                responseDto.StatusCode = response != null ? (int)HttpStatusCode.Accepted : (int)HttpStatusCode.NoContent;
+                responseDto.StatusCode = response.PageItems != null ? (int)HttpStatusCode.Accepted : (int)HttpStatusCode.NoContent;
                 responseDto.Status = true;
-                responseDto.Message = response != null ? "Resquest is Successfull" : "the database is Empty";
+                responseDto.Message = response.PageItems != null ? "Resquest is Successfull" : "the database is Empty";
                 return responseDto;
             }
             catch (Exception Ex)
@@ -39,7 +39,6 @@ namespace ECommerceApp.Core.Services
                 return responseDto;
             }
         }
-
         public async Task<ResponseDTO<ProductDTO>> GetProductByIdAsync(string id)
         {
             var responseDto = new ResponseDTO<ProductDTO>();
@@ -61,12 +60,31 @@ namespace ECommerceApp.Core.Services
                 responseDto.Message = "Resquest was unSuccessfull";
                 responseDto.Error.Add(new ErrorItem() { InnerException = Ex.Message });
                 return responseDto;
-            }
-             
+            }  
         }
-        public Task<bool> AddProductAsync(Product product)
+        public async Task<ResponseDTO<bool>> AddProductAsync(AddProductDTO product)
         {
-            throw new NotImplementedException();
+            var response = new ResponseDTO<bool>();
+            try
+            {
+                var productEntity = _mapper.Map<Product>(product);
+                await _unitOfWork.ProductRepository.InsertAsync(productEntity);
+                await _unitOfWork.Save();
+                response.Status = true;
+                response.StatusCode = (int)HttpStatusCode.Created;
+                response.Data = true;
+                response.Message = "the insatance was successfully";
+                return response;
+            }
+            catch (Exception Ex)
+            {
+                response.Status = false;
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                response.Data = false;
+                response.Message = "the instance was not created";
+                response.Error.Add(new ErrorItem() { InnerException = Ex.Message });
+                return response;
+            }
         }
     }
 }

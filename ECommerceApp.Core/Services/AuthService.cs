@@ -3,12 +3,7 @@ using ECommerceApp.Core.DTO;
 using ECommerceApp.Core.Interface;
 using ECommerceApp.Core.Utilities;
 using ECommerceApp.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerceApp.Core.Services
 {
