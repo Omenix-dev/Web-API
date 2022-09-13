@@ -15,7 +15,8 @@ namespace ECommerceApp.Core.Utilities
         {
             CreateMap<User, LoginDTO>();
             CreateMap<OrderDetail, OrderDetailsDTO>();
-            CreateMap<Product, ProductDTO>();
+            CreateMap<Product, ProductDTO>()
+                .ForMember(dest=>dest.ProductImage,act => act.MapFrom(src=>src.ProductImages.FirstOrDefault()));
             CreateMap<User, RegistrationDTO>().ReverseMap()
                 .ForMember(dest => dest.Email, act => act.MapFrom(src => src.Email.ToLower()));
         }

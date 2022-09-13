@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerceApp.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Core.DTO
 {
-    class ProductDTO
+    public class ProductDTO
     {
         [Required]
         [StringLength(50, ErrorMessage = "Do not enter more than 50 characters")]
@@ -17,7 +18,7 @@ namespace ECommerceApp.Core.DTO
         public string Category { get; set; }
         [Required]
         [MaxLength(50)]
-        public string ProductImage { get; set; }
+        public ProductImage ProductImage { get; set; }
         [Required]
         [MaxLength(150)]
         public string Description { get; set; }
