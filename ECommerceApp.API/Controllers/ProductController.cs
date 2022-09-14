@@ -24,7 +24,6 @@ namespace ECommerceApp.API.Controllers
             var response = _service.GetProductsByPaginationAsync(details.PageSize, details.PageNumber);
             return Ok(response);
         }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(string id)
         {
