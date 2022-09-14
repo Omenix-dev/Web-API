@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using ECommerceApp.Core.DTO;
+using ECommerceApp.Domain.Enum;
 using ECommerceApp.Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ECommerceApp.Core.Utilities
@@ -15,7 +17,9 @@ namespace ECommerceApp.Core.Utilities
         {
             CreateMap<User, LoginDTO>();
             CreateMap<OrderDetail, OrderDetailsDTO>();
+            CreateMap<AddProductDTO, Product>();
             CreateMap<Product, ProductDTO>();
+                //.ForMember(dest=>dest.ProductImage,act => act.MapFrom(src=>src.ProductImages.Select(x=>x)));
             CreateMap<User, RegistrationDTO>().ReverseMap()
                 .ForMember(dest => dest.Email, act => act.MapFrom(src => src.Email.ToLower()));
         }

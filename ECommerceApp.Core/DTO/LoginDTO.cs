@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerceApp.Core.DTO
 {
     public class LoginDTO
     {
         [Required]
-        [EmailAddress(ErrorMessage ="Invalid Email")]
+        [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
