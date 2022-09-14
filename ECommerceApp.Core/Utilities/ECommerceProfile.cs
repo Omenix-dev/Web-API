@@ -16,7 +16,7 @@ namespace ECommerceApp.Core.Utilities
         public ECommerceProfile()
         {
             CreateMap<User, LoginDTO>();
-            CreateMap<OrderDetail, OrderDetailsDTO>();
+            CreateMap<OrderDetailsDTO, OrderDetail>();
             CreateMap<AddProductDTO, Product>();
             CreateMap<Product, ProductDTO>();
                 //.ForMember(dest=>dest.ProductImage,act => act.MapFrom(src=>src.ProductImages.Select(x=>x)));
