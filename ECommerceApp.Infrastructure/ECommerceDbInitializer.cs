@@ -44,6 +44,12 @@ namespace ECommerceApp.Infrastructure
                 List<User> users = JsonConvert.DeserializeObject<List<User>>(readText);
                 await context.Users.AddRangeAsync(users);
             }
+            if (!context.Orders.Any())
+            {
+                var readText = await File.ReadAllTextAsync(filePath + "Orders.json");
+                List<Order> orders = JsonConvert.DeserializeObject<List<Order>>(readText);
+                await context.Orders.AddRangeAsync(orders);
+            }
             await context.SaveChangesAsync();
         }
     }
