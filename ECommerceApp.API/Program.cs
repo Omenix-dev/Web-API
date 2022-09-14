@@ -11,7 +11,10 @@ var configuration = builder.Configuration;
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddNewtonsoftJson(v => v.SerializerSettings.ReferenceLoopHandling = Newtonsoft
+builder.Services.AddControllers(setupAction =>
+{
+    setupAction.ReturnHttpNotAcceptable = true;
+}).AddNewtonsoftJson(v => v.SerializerSettings.ReferenceLoopHandling = Newtonsoft
     .Json.ReferenceLoopHandling.Ignore);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

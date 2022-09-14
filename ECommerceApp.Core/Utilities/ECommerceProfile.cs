@@ -17,12 +17,9 @@ namespace ECommerceApp.Core.Utilities
         {
             CreateMap<User, LoginDTO>();
             CreateMap<OrderDetail, OrderDetailsDTO>();
-            CreateMap<AddProductDTO, Product>()
-                 .ForMember(dest => dest.ProductImages, act => act.MapFrom(src=>src.ProductImage.Select(x=>x)))
-                 .ForMember(dest => dest.CategoryId, act => act.MapFrom(src=>((CategoryEnum)src.CategoryId)
-                 .GetType().GetMember(((CategoryEnum)src.CategoryId).ToString()).First().GetCustomAttribute<DisplayAttribute>().Name));
-            CreateMap<Product, ProductDTO>()
-                .ForMember(dest=>dest.ProductImage,act => act.MapFrom(src=>src.ProductImages.FirstOrDefault()));
+            CreateMap<AddProductDTO, Product>();
+            CreateMap<Product, ProductDTO>();
+                //.ForMember(dest=>dest.ProductImage,act => act.MapFrom(src=>src.ProductImages.Select(x=>x)));
             CreateMap<User, RegistrationDTO>().ReverseMap()
                 .ForMember(dest => dest.Email, act => act.MapFrom(src => src.Email.ToLower()));
         }

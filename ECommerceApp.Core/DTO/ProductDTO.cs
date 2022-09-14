@@ -18,7 +18,7 @@ namespace ECommerceApp.Core.DTO
         public string Category { get; set; }
         [Required]
         [MaxLength(50)]
-        public ProductImage ProductImage { get; set; }
+        public IEnumerable<string> ProductImage { get; set; }
         [Required]
         [MaxLength(150)]
         public string Description { get; set; }

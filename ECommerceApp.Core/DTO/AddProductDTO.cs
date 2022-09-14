@@ -9,12 +9,6 @@ namespace ECommerceApp.Core.DTO
         [StringLength(50, ErrorMessage = "Do not enter more than 50 characters")]
         public string Name { get; set; }
         [Required]
-        [MaxLength(30)]
-        public int CategoryId { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public IFormFileCollection ProductImage { get; set; }
-        [Required]
         [MaxLength(150)]
         public string Description { get; set; }
         [Required]
