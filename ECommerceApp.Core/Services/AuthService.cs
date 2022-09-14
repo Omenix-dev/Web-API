@@ -67,8 +67,8 @@ namespace ECommerceApp.Core.Services
 
         private SigningCredentials GetSigningCredentials()
         {
-            var key = Environment.GetEnvironmentVariable("LOCK");
-            var secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            //var key = Environment.GetEnvironmentVariable("LOCK");
+            var secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetValue<string>("Jwt:token")));
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
 

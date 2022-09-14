@@ -37,7 +37,6 @@ namespace ECommerceApp.Core.Services
 
         public async Task<IList<string>> GetRolesAsync(User user)
         {
-
             using (var connection = new SqlConnection(_con))
             {
                 var queryResults = await connection.QueryAsync<string>("SELECT r.[Name] FROM [Roles] r INNER JOIN [UserRoles] ur ON ur.[RoleId] = r.Id " +
@@ -47,3 +46,16 @@ namespace ECommerceApp.Core.Services
         }
     }
 }
+
+/*        public async Task AddToRoleAsync(User user, string roleName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Role> GetRolesAsync(User user)
+        {
+            List<UserRole> userRoleList = new List<UserRole>();
+            var allUsersRoles = _unitOfWork.RoleRepository.GetAllAsync();
+            var userRoles = allUsersRoles.Where(userId => userId.Id.Equals(user.Id)).ToList();
+            return userRoles;
+        }*/
