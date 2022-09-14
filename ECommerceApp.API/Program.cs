@@ -23,6 +23,7 @@ builder.Services.AddDbContext<ECommerceDbContext>(options => options.UseSqlServe
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddAutoMapper(typeof(ECommerceProfile));
 var app = builder.Build();
 await ECommerceDbInitializer.Seed(app);
