@@ -13,7 +13,6 @@ namespace ECommerceApp.Core.DTO
         public string LastName { get; set; }
         [Required]
         [EmailAddress(ErrorMessage = "Invalid Email")]
-        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
@@ -21,7 +20,6 @@ namespace ECommerceApp.Core.DTO
         [Required]
         [Compare("Password")]
         public string PasswordAgain { get; set; }
-        public byte[] PasswordSalt { get; set; } = SaltHashAlgorithm.GenerateSalt();
         [Required(ErrorMessage ="Enter Address")]
         public string Address { get; set; }
         [Required]

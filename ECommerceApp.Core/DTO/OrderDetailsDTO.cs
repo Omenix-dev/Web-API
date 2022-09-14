@@ -11,12 +11,14 @@ namespace ECommerceApp.Core.DTO
     {
         [Required]
         [DataType(DataType.Text)]
-        public string Status { get; set; }
+        public int Status { get; set; }
         [Required]
         [DataType(DataType.Text)]
         public decimal price { get; set; }
         [Required]
         [DataType(DataType.Text)]
         public int Quantity { get; set; }
+        [Required]
+        public string ProductId { get; set; }
     }
 }
