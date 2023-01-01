@@ -96,10 +96,12 @@ namespace ECommerceApp.Core.Services
                 var userModel = _mapper.Map<User>(userDetails);
                 userModel.PasswordSalt = SaltHashAlgorithm.GenerateSalt();
                 userModel.PasswordHash = SaltHashAlgorithm.GenerateHash(userDetails.Password, userModel.PasswordSalt);
-                if(_unitOfWork.UserRepository.InsertAsync(userModel).IsCompletedSuccessfully)
-                {
-                    await _service.AddToRoleAsync(userModel, UserRoles.Customer.ToString());
-                }               
+                await _unitOfWork.UserRepository.InsertAsync(userModel);
+                //var isComplete =_unitOfWork.UserRepository.InsertAsync(userModel).IsCompleted;
+                //if (isComplete)
+                //{
+                //    //await _service.AddToRoleAsync(userModel, UserRoles.Customer.ToString());
+                //}               
             }
             catch (Exception)
             {

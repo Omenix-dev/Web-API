@@ -1,0 +1,25 @@
+version: "3.4"
+services:
+  ECommerceApp.API:
+    image: omenixdev/ecommerceapp:v1
+    build:
+      context: .
+      dockerfile: ./ECommerceApp.API/Dockerfile
+    ports:
+      - 8080:80
+    depends_on:
+      - database
+    volumes:
+      - ./:/src
+
+  database:
+    image: mcr.microsoft.com/mssql/server:latest
+    ports:
+      - 1433:1433
+    volumes:
+      - ./data:/var/opt/mssql/data
+      - ./log:/var/opt/mssql/log
+      - ./secrets:/var/opt/mssql/secrets
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Nono_080
